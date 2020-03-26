@@ -5,11 +5,10 @@ Celem jest powtórzenie symulacji jak na filmie:
 
 
   
-  [![Loop Extrusion Waltz](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)](https://www.youtube.com/watch?v=8FW6gOx5lPI)
-  
-X
-<a href="https://www.youtube.com/watch?v=8FW6gOx5lPI" rel="Loop Extrusion Waltz">![Foo](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)</a>
 
+<p align="center">
+<a href="https://www.youtube.com/watch?v=8FW6gOx5lPI" rel="Loop Extrusion Waltz">![Foo](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)</a>
+<\p>
 Tutaj papier do poczytania.
 http://symposium.cshlp.org/content/82/45.full
 
