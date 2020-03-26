@@ -6,9 +6,8 @@ Celem jest powtórzenie symulacji jak na filmie:
 
   
 
-<p align="center">
-<a href="https://www.youtube.com/watch?v=8FW6gOx5lPI" rel="Loop Extrusion Waltz">![Foo](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)</a>
-<\p>
+<a href="https://www.youtube.com/watch?v=8FW6gOx5lPI" rel="Loop Extrusion Waltz">![Foo](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg align="center")</a>
+
 Tutaj papier do poczytania.
 http://symposium.cshlp.org/content/82/45.full
 
