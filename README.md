@@ -4,8 +4,9 @@ Projekt studencki, którego celem jest otrzymanie symulacji tworzenia pętli z c
 Celem jest powtórzenie symulacji jak na filmie:
 
 https://www.youtube.com/watch?v=8FW6gOx5lPI
-[![Loop Extrusion Waltz](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)](https://www.youtube.com/watch?v=8FW6gOx5lPI)
-
+<p align="center">
+  [![Loop Extrusion Waltz](https://img.youtube.com/vi/8FW6gOx5lPI/0.jpg)](https://www.youtube.com/watch?v=8FW6gOx5lPI)
+</p>
 
 Tutaj papier do poczytania.
 http://symposium.cshlp.org/content/82/45.full
