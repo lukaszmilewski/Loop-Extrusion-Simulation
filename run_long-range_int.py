@@ -90,6 +90,7 @@ def add_harmonic_bond(system: mm.System, args: ListOfArgs):
     for i in range(system.getNumParticles() - 1):
         bond_force.addBond(i, i + 1, args.POL_HARMONIC_BOND_R0, args.POL_HARMONIC_BOND_K)
         counter += 1
+    #Tutaj dodana interakcja dalekozasięgowa między 6, a 16 (liczy się od 0) kulką jako wiązanie harmoniczne
     bond_force.addBond(5, 15,args.POL_HARMONIC_BOND_R0, args.POL_HARMONIC_BOND_K)
     print(f"         {counter} harmonic bonds added.")
 
