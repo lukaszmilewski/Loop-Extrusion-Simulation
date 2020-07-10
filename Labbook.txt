@@ -1,7 +1,7 @@
 Podział pracy do tej pory:
-Łukasz - nadzorowanie prac grupy, komunikacja z opiekunem projektu, utworzenie i utrzymywanie w porządku repozytorium na github, ustalenie strategii uzywania git (podzial na branches) 
+Łukasz - nadzorowanie prac grupy, komunikacja z opiekunem projektu, utworzenie i utrzymywanie w porządku repozytorium na github, ustalenie strategii uzywania git (podzial na branches); dzielenie zadań między członków zespołu
 - w 1 etapie projektu: utworzenie long-range interaction harmonicznego i z pomocą opiekuna namienienie tego w flat-bottom-force, 
-na głownym etapie projektu: utworzenie wstępnej macierzy zawierającej czas symulacji, siły wiązań, które się mają zmieniać
+- na głownym etapie projektu: utworzenie wstępnej macierzy zawierającej czas symulacji, siły wiązań, które się mają zmieniać
 Ela i Łukasz - zrozumienie jak używa się narzędzia MDMovie w chimerze i wgrywanie tam skryptu kolorującego; rozczytanie kodu programu run_pinned.py; ustalenie strategii działania: macierz, co ileś kroków o małą wartość ma zmieniać sie siły wiązania
 Ela - sprawdzenie, czy w symulacji z użyciem openmm puszczenie simulation.step z 1 krokiem 200 razy jest tym samym co puszczenie simulation.step raz z 200 krokami (steps_per_cycle) pod względem wyników i czasu działania
 Maciek - puszczanie symulacji i tworzenie filmów w MDMovie
