@@ -5,3 +5,4 @@ Podział pracy do tej pory:
 Ela i Łukasz - zrozumienie jak używa się narzędzia MDMovie w chimerze i wgrywanie tam skryptu kolorującego; rozczytanie kodu programu run_pinned.py; ustalenie strategii działania: macierz, co ileś kroków o małą wartość ma zmieniać sie siły wiązania
 Ela - sprawdzenie, czy w symulacji z użyciem openmm puszczenie simulation.step z 1 krokiem 200 razy jest tym samym co puszczenie simulation.step raz z 200 krokami (steps_per_cycle) pod względem wyników i czasu działania
 Maciek - puszczanie symulacji i tworzenie filmów w MDMovie
+Maciek i Łukasz - napisanie kodu pętli ze zmianą sił wiązań o trochę wg macierzy co krok
