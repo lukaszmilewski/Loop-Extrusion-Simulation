@@ -10,8 +10,8 @@ from md_utils import gen_line_array
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
-LE_FORCE_SCALE = 1 * u.kilocalories_per_mole / u.angstroms ** 2
-STEPS_PER_CYCLE = 200
+LE_FORCE_SCALE = 2 * u.kilocalories_per_mole / u.angstroms ** 2
+STEPS_PER_CYCLE = 100
 
 pdb = PDBFile('initial_structure.pdb')
 forcefield = ForceField('polymer_ff.xml')
@@ -52,13 +52,21 @@ simulation.step(STEPS_PER_CYCLE)
 for i in range(2, 35):
     p1, p2 = 49 - i, 49 + i
     le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
-                               0.000001 * u.kilocalories_per_mole / u.angstroms ** 2)
+                               0 * u.kilocalories_per_mole / u.angstroms ** 2)
+    le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, 1)
+    #simulation.minimizeEnergy()
+    le_force.updateParametersInContext(simulation.context)
+    for j in range(STEPS_PER_CYCLE):
+        simulation.step(1)
+        
+    le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
+                                0 * u.kilocalories_per_mole / u.angstroms ** 2)
     le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, LE_FORCE_SCALE)
     #simulation.minimizeEnergy()
     le_force.updateParametersInContext(simulation.context)
     for j in range(STEPS_PER_CYCLE):
         simulation.step(1)
-        #DODAJ J DO NASZEJ MACIERZY Z FEMTOSEKUNDAMI
+    
     plot_data(STATE_FNAME, 'energy.pdf')
 
 print('#1: repr stick; color white; color red :1,100; repr sphere :1,100; vdwdefine 0.5')
