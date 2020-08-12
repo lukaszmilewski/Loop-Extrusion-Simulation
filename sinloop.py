@@ -85,4 +85,4 @@ for i in range(2, 35):
 #    print(
 #        f'#{i*STEPS_PER_CYCLE+1}: color green :{p1},{p2}; repr sphere :{p1},{p2}; repr stick :{p1+1},{p2-1}; color #ffffa2e8a2e8 :{p1+1}-{p2-1};')
 
-print("end")
+print("end.")
