@@ -2,6 +2,11 @@ import csv
 
 import numpy as np
 from matplotlib import pyplot as plt
+
+def gen_line_array (N,F):
+    a=np.arange(1,N+1)
+    b=F*a/N
+    c=b[::-1]
 def gen_sin_array (N,F):
     a=np.arange(1,N+1)
     b=F*np.sin((a/(N/(np.pi/2))))
