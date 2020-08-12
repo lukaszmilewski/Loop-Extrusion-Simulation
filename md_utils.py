@@ -36,4 +36,5 @@ def plot_data(state_fname, plot_fname):
         ax1.set_ylabel("Potential energy [kJ/mole]")
 
         plt.savefig(plot_fname)
-        print("Plot saved in {} file".format(plot_fname))
+        plt.close()
+        #print("Plot saved in {} file".format(plot_fname))
