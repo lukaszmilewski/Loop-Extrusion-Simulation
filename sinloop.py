@@ -12,11 +12,12 @@ STATE_FNAME = 'state.csv'
 STEPS = 10000
 LE_FORCE_SCALE = 2
 STEPS_PER_CYCLE = 200
+MATRIX_LENGTH = 2
 
 #Macierz z parametrami sił wiązań
 #Dodano funkcje generacji macierzy o wartościach sinusoidalnych. Funkcja ta przyjmuje dwa argumenty. Pierwszy oznacza liczbę kroków które ma posiadać macierz a drugi
 #stanowi regulacje maksymalnej siły (tzn jeśli wstawimy 3 to maksymalna siła bedzie tyle wynosić)
-LE_FORCE_MATRIX = gen_sin_array(STEPS_PER_CYCLE,LE_FORCE_SCALE)
+LE_FORCE_MATRIX = gen_sin_array(MATRIX_LENGTH,LE_FORCE_SCALE)
 
 pdb = PDBFile('initial_structure.pdb')
 forcefield = ForceField('polymer_ff.xml')
@@ -53,17 +54,17 @@ simulation.reporters.append(DCDReporter('trj.dcd', 1))
 simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, potentialEnergy=True, temperature=True))
 simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potentialEnergy=True))
 
-simulation.step(STEPS_PER_CYCLE)
+simulation.step(200)
 
 for i in range(1, 35):
     p1, p2 = 49 - i, 49 + i
-    for j in range(STEPS_PER_CYCLE):
-        if STEPS_PER_CYCLE % 20 == 0
+    for j, n in enumerate(LE_FORCE_MATRIX)
         le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
                                   LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2)
         le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, LE_FORCE_MATRIX[2][j])
         le_force.updateParametersInContext(simulation.context)
-        simulation.step(20)
+        simulation.step(STEPS_PER_CYCLE/len(LE_FORCE_MATRIX))
+        plot_data(STATE_FNAME, 'energy.pdf')
     # le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
     #                           LE_FORCE_MATRIX[1][0] * u.kilocalories_per_mole / u.angstroms ** 2)
     # le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, LE_FORCE_MATRIX[2][0])
