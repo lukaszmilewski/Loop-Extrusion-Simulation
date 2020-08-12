@@ -5,7 +5,8 @@ import simtk.unit as u
 from simtk.openmm.app import PDBFile, ForceField, Simulation, DCDReporter, StateDataReporter
 from md_utils import plot_data
 import numpy as np
-
+from md_utils import gen_sin_array
+from md_utils import gen_line_array
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
