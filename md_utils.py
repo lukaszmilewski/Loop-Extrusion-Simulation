@@ -7,12 +7,15 @@ def gen_line_array (N,F):
     a=np.arange(1,N+1)
     b=F*a/N
     c=b[::-1]
+    return np.vstack((a,b,c))
+
 def gen_sin_array (N,F):
     a=np.arange(1,N+1)
     b=F*np.sin((a/(N/(np.pi/2))))
     c=b[::-1]
    
     return np.vstack((a,b,c))
+
 def plot_data(state_fname, plot_fname):
     with open(state_fname) as csv_file:
         csv_reader = csv.DictReader(csv_file, fieldnames=['step', 'energy'], delimiter=",")
