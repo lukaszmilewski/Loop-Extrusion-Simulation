@@ -8,18 +8,18 @@ from md_utils import plot_data, gen_line_array, gen_sin_array
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
-LE_FORCE_SCALE = 2
-MATRIX_LENGTH = 200
-STEPS_PER_CYCLE = 100
-STEPS_PER_IT = 1 #int(round(STEPS_PER_CYCLE/MATRIX_LENGTH))
+LE_FORCE_SCALE = 3
+MATRIX_LENGTH = 1200
+STEPS_PER_CYCLE = 10
+STEPS_PER_IT = 1
 
 
 #Macierz z parametrami sił wiązań
 #Dodano funkcje generacji macierzy o wartościach sinusoidalnych. Funkcja ta przyjmuje dwa argumenty. Pierwszy oznacza liczbę kroków które ma posiadać macierz a drugi
 #stanowi regulacje maksymalnej siły (tzn jeśli wstawimy 3 to maksymalna siła bedzie tyle wynosić)
 LE_FORCE_MATRIX = gen_sin_array(MATRIX_LENGTH,LE_FORCE_SCALE)
-#LE_FORCE_MATRIX[1][0] = 0
-#LE_FORCE_MATRIX[2][-1] = 0
+LE_FORCE_MATRIX[1][0] = 0
+LE_FORCE_MATRIX[2][-1] = 0
 #print(LE_FORCE_MATRIX)
 
 pdb = PDBFile('initial_structure.pdb')
@@ -57,7 +57,7 @@ simulation.reporters.append(DCDReporter('trj.dcd', 1))
 simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, potentialEnergy=True, temperature=True))
 simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potentialEnergy=True))
 
-simulation.step(200)
+simulation.step(1)
 
 for i in range(2, 35):
     p1, p2 = 49 - i, 49 + i
