@@ -4,7 +4,8 @@ import simtk.openmm as mm
 import simtk.unit as u
 from simtk.openmm.app import PDBFile, ForceField, Simulation, DCDReporter, StateDataReporter
 from md_utils import plot_data
-
+from md_utils import gen_sin_array
+from md_utils import gen_line_array
 
 
 STATE_FNAME = 'state.csv'
