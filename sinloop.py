@@ -10,13 +10,13 @@ import numpy as np
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
-LE_FORCE_SCALE = 3 * u.kilocalories_per_mole / u.angstroms ** 2
+LE_FORCE_SCALE = 2
 STEPS_PER_CYCLE = 200
 
 #Macierz z parametrami sił wiązań
 #Dodano funkcje generacji macierzy o wartościach sinusoidalnych. Funkcja ta przyjmuje dwa argumenty. Pierwszy oznacza liczbę kroków które ma posiadać macierz a drugi
 #stanowi regulacje maksymalnej siły (tzn jeśli wstawimy 3 to maksymalna siła bedzie tyle wynosić)
-LE_FORCE_MATRIX = gen_sin_array(200,3)
+LE_FORCE_MATRIX = gen_sin_array(STEPS_PER_CYCLE,LE_FORCE_SCALE)
 
 pdb = PDBFile('initial_structure.pdb')
 forcefield = ForceField('polymer_ff.xml')
@@ -39,11 +39,12 @@ system.addForce(pin_force)
 
 # Loop extrusion force
 le_force = mm.HarmonicBondForce()
-le_force.addBond(48, 50, 1 * u.angstrom, LE_FORCE_MATRIX[2][0] * u.kilocalories_per_mole / u.angstroms ** 2)
+le_force.addBond(48, 50, 1 * u.angstrom, LE_FORCE_SCALE * u.kilocalories_per_mole / u.angstroms ** 2)
 for i in range(2, 35):
     p1, p2 = 49 - i, 49 + i
-    le_force.addBond(p1, p2, 1 * u.angstrom, LE_FORCE_MATRIX[1][0] * u.kilocalories_per_mole / u.angstroms ** 2)
+    le_force.addBond(p1, p2, 1 * u.angstrom, 0.000001 * u.kilocalories_per_mole / u.angstroms ** 2)
 system.addForce(le_force)
+    
 
 simulation = Simulation(pdb.topology, system, integrator)
 simulation.context.setPositions(pdb.positions)
@@ -54,14 +55,15 @@ simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potent
 
 simulation.step(STEPS_PER_CYCLE)
 
-for i in range(2, 35):
+for i in range(1, 35):
     p1, p2 = 49 - i, 49 + i
-    for j in range(0, STEPS_PER_CYCLE):
+    for j in range(STEPS_PER_CYCLE):
+        if STEPS_PER_CYCLE % 20 == 0
         le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
                                   LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2)
         le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, LE_FORCE_MATRIX[2][j])
         le_force.updateParametersInContext(simulation.context)
-        simulation.step(1)
+        simulation.step(20)
     # le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
     #                           LE_FORCE_MATRIX[1][0] * u.kilocalories_per_mole / u.angstroms ** 2)
     # le_force.setBondParameters(i - 1, p1, p2, 1 * u.angstrom, LE_FORCE_MATRIX[2][0])
