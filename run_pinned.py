@@ -10,7 +10,7 @@ from md_utils import gen_line_array
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
-LE_FORCE_SCALE = 3 * u.kilocalories_per_mole / u.angstroms ** 2
+LE_FORCE_SCALE = 1 * u.kilocalories_per_mole / u.angstroms ** 2
 STEPS_PER_CYCLE = 200
 
 pdb = PDBFile('initial_structure.pdb')
