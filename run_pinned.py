@@ -4,14 +4,15 @@ import simtk.openmm as mm
 import simtk.unit as u
 from simtk.openmm.app import PDBFile, ForceField, Simulation, DCDReporter, StateDataReporter
 from md_utils import plot_data
-import numpy as np
+
+
 from md_utils import gen_sin_array
 from md_utils import gen_line_array
 
 STATE_FNAME = 'state.csv'
 STEPS = 10000
-LE_FORCE_SCALE = 3 * u.kilocalories_per_mole / u.angstroms ** 2
-STEPS_PER_CYCLE = 200
+LE_FORCE_SCALE = 2 * u.kilocalories_per_mole / u.angstroms ** 2
+STEPS_PER_CYCLE = 100
 
 #Macierz z parametrami sił wiązań
 LE_FORCE_MATRIX = np.array([[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201],
@@ -56,6 +57,7 @@ simulation.step(STEPS_PER_CYCLE)
 
 for i in range(2, 35):
     p1, p2 = 49 - i, 49 + i
+
     for j in range(0, STEPS_PER_CYCLE):
         le_force.setBondParameters(i - 2, p1 + 1, p2 - 1, 1 * u.angstrom,
                                   LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2)
