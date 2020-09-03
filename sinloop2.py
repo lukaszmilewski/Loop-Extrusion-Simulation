@@ -7,10 +7,10 @@ from md_utils import plot_data, gen_line_array, gen_sin_array
 #from tqdm import trange
 
 STATE_FNAME = 'state.csv'
-STEPS = 10000
+STEPS = 10000 #10000
 LE_FORCE_SCALE = 3
-MATRIX_LENGTH = 1200
-STEPS_PER_CYCLE = 10
+MATRIX_LENGTH = 1200 #1200
+STEPS_PER_CYCLE = 200
 STEPS_PER_IT = 1
 BLOCK = 15
 
@@ -59,20 +59,24 @@ simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potent
 simulation.step(1)
 for i in range(2, 35):
     p1 = BLOCK
-    for j in range(MATRIX_LENGTH):
-        le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #ROSNĄCA
-        le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #MALEJĄCA
-        le_force.setBondParameters(i - 2, p1, p1 + i, 1 * u.angstrom,
-                                  3
-                                   #le_force_two)
-        le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, 1)#le_force_one)
-        le_force.updateParametersInContext(simulation.context)
-        #print(le_force_one)
-        #print(le_force_two)
-        #simulation.minimizeEnergy()
-        simulation.step(STEPS_PER_IT)
-#    for i in range(STEPS_PER_CYCLE):
-#        simulation.step(1)
+    le_force.setBondParameters(i - 2, p1, p1 + i, 1 * u.angstrom,
+                               0)
+    le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, 3)
+    le_force.updateParametersInContext(simulation.context)
+    for i in range(STEPS_PER_CYCLE):
+        simulation.step(1)
+    #for j in range(MATRIX_LENGTH):
+    #    le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #ROSNĄCA
+    #    le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #MALEJĄCA
+    #    le_force.setBondParameters(i - 2, p1, p1 + i, 1 * u.angstrom,
+    #                              le_force_two)
+    #    le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, le_force_one)
+    #    le_force.updateParametersInContext(simulation.context)
+        ##print(le_force_one)
+        ##print(le_force_two)
+        ##simulation.minimizeEnergy()
+        #simulation.step(STEPS_PER_IT)
+
 
     plot_data(STATE_FNAME, 'energy.png')
 
