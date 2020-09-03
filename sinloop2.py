@@ -57,14 +57,14 @@ simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, potential
 simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potentialEnergy=True))
 
 simulation.step(1)
-for i in range(1, 35):
+for i in range(2, 35):
     p1 = 15
     for j in range(MATRIX_LENGTH):
         le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #ROSNĄCA
         le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #MALEJĄCA
         le_force.setBondParameters(i - 2, p1, p1 + i, 1 * u.angstrom,
                                   le_force_two)
-        le_force.setBondParameters(i - 1, p1, p1 + 2, 1 * u.angstrom, le_force_one)
+        le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, le_force_one)
         le_force.updateParametersInContext(simulation.context)
         #print(le_force_one)
         #print(le_force_two)
