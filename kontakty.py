@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #tu należy podać lokalizacje pliku dcd a w parametrze top lokalizacje
 #struktury poczatkowej. Na poczatku ścierzki ZAWSZE trzeba dać "r"
 #bo inaczej string jest skopany i nie działa
-t = md.load(r'C:\Users\Maciek\looppliki\trj.dcd',top=r'C:\Users\Maciek\looppliki\initial_structure.pdb')
+t = md.load(r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\1sided-trj.dcd',top=r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\initial_structure.pdb')
 M=t.xyz
 sum_arr=np.zeros((100,100))
 
@@ -17,6 +17,7 @@ for i in range(M.shape[0]):
     X[X >0] = 1
     sum_arr+=X
 
-plt.imshow(sum_arr, cmap='hot', vmin=0,vmax=2400)
+plt.imshow(sum_arr, cmap='Reds', vmin=0,vmax=2400)
 plt.grid(b=None)
 plt.show()
+plt.savefig("1sided-heatmap.png")
