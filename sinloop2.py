@@ -63,8 +63,9 @@ for i in range(2, 35):
         le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #ROSNĄCA
         le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #MALEJĄCA
         le_force.setBondParameters(i - 2, p1, p1 + i, 1 * u.angstrom,
-                                  le_force_two)
-        le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, le_force_one)
+                                  3
+                                   #le_force_two)
+        le_force.setBondParameters(i - 1, p1, p1 + i + 1, 1 * u.angstrom, 1)#le_force_one)
         le_force.updateParametersInContext(simulation.context)
         #print(le_force_one)
         #print(le_force_two)
