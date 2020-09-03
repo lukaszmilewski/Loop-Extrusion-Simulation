@@ -4,9 +4,9 @@ Podział pracy do tej pory:
 - na głownym etapie projektu: utworzenie wstępnej macierzy zawierającej czas symulacji, siły wiązań, które się mają zmieniać; utworzenie pętli, która bierze z macierzy kolejne wartości sił wiązań, poprawa pętli poprawiająca wykres energii
 Ela i Łukasz - zrozumienie jak używa się narzędzia MDMovie w chimerze i wgrywanie tam skryptu kolorującego; rozczytanie kodu programu run_pinned.py; ustalenie strategii działania: macierz, co ileś kroków o małą wartość ma zmieniać sie siły wiązania
 Ela - sprawdzenie, czy w symulacji z użyciem openmm puszczenie simulation.step z 1 krokiem 200 razy jest tym samym co puszczenie simulation.step raz z 200 krokami (steps_per_cycle) pod względem wyników i czasu działania; puszczanie symulacji z różną liczbą kroków po każdej zmianie siły wiązania
-Maciek - puszczanie symulacji i tworzenie filmów w MDMovie; zrobienie sinusoidalnej macierzy, próbowanie różnych rodzajów macierzy w celu zrobienia stałej energii całkowitej, stworzenie generatora sinusoidalnej oraz liniowej macierzy z wartościami sił wiązania od 0 do zadanej wielkości w md_utils i wywoływana w głównym programie
+Maciek - puszczanie symulacji i tworzenie filmów w MDMovie; zrobienie sinusoidalnej macierzy, próbowanie różnych rodzajów macierzy w celu zrobienia stałej energii całkowitej, stworzenie generatora sinusoidalnej oraz liniowej macierzy z wartościami sił wiązania od 0 do zadanej wielkości w md_utils i wywoływana w głównym programie; napisanie programu kontakty.py generującemu macierz kontaktów z pliku CDC
 
 Planowany podział:
 Ela - wstęp teoretyczny w raporcie
-Łukasz - opisanie wyników i wniosków w raporcie; formatowanie raportu w LateX
+Łukasz - opisanie wyników i wniosków w raporcie; formatowanie raportu w LateX; porównanie wyników z danymi eksperymentalnymi
 
