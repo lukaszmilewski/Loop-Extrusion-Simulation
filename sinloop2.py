@@ -12,7 +12,7 @@ LE_FORCE_SCALE = 3
 MATRIX_LENGTH = 1200
 STEPS_PER_CYCLE = 10
 STEPS_PER_IT = 1
-
+BLOCK = 15
 
 #Macierz z parametrami sił wiązań
 #Dodano funkcje generacji macierzy o wartościach sinusoidalnych. Funkcja ta przyjmuje dwa argumenty. Pierwszy oznacza liczbę kroków które ma posiadać macierz a drugi
@@ -44,8 +44,8 @@ system.addForce(pin_force)
 le_force = mm.HarmonicBondForce()
 le_force.addBond(15, 17, 1 * u.angstrom, LE_FORCE_SCALE * u.kilocalories_per_mole / u.angstroms ** 2)
 for i in range(2, 35):
-    p1, p2 = 49 - i, 49 + i
-    le_force.addBond(p1, p2, 1 * u.angstrom, 0.000001 * u.kilocalories_per_mole / u.angstroms ** 2)
+    p1 = BLOCK
+    le_force.addBond(p1, p1 + i, 1 * u.angstrom, 0.000001 * u.kilocalories_per_mole / u.angstroms ** 2)
 system.addForce(le_force)
 
 
@@ -58,7 +58,7 @@ simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potent
 
 simulation.step(1)
 for i in range(2, 35):
-    p1 = 15
+    p1 = BLOCK
     for j in range(MATRIX_LENGTH):
         le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #ROSNĄCA
         le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #MALEJĄCA
