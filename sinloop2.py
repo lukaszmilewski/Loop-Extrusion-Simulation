@@ -44,22 +44,22 @@ def loop_extrusion(STEPS, LE_FORCE_SCALE, MATRIX_LENGTH, STEPS_PER_CYCLE, STEPS_
 # Loop extrusion force
     le_force = mm.HarmonicBondForce()
     le_force.addBond(15, 17, 1 * u.angstrom, LE_FORCE_SCALE * u.kilocalories_per_mole / u.angstroms ** 2)
-    for i in range(3, 60):
-        p1, p2 = 15, 15 + i
+    for i in range(3, 71):
+        p1, p2 = 14, 14 + i
         le_force.addBond(p1, p2, 1 * u.angstrom, 0.000001 * u.kilocalories_per_mole / u.angstroms ** 2)
     system.addForce(le_force)
 
     simulation = Simulation(pdb.topology, system, integrator)
     simulation.context.setPositions(pdb.positions)
     simulation.minimizeEnergy()
-    simulation.reporters.append(DCDReporter('1sided-trj.dcd', 1))
+    simulation.reporters.append(DCDReporter('wyniki/1sided-trj.dcd', 1))
     simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, potentialEnergy=True, temperature=True))
     simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potentialEnergy=True))
 
     simulation.step(1)
 
-    for i in range(2, 59):
-        p1, p2 = 15, 15 + i
+    for i in range(2, 70):
+        p1, p2 = 14, 14 + i
         for j in range(MATRIX_LENGTH):
             le_force_one = LE_FORCE_MATRIX[1][j] * u.kilocalories_per_mole / u.angstroms ** 2 #rosnie
             le_force_two = LE_FORCE_MATRIX[2][j] * u.kilocalories_per_mole / u.angstroms ** 2 #maleje
@@ -84,3 +84,5 @@ def loop_extrusion(STEPS, LE_FORCE_SCALE, MATRIX_LENGTH, STEPS_PER_CYCLE, STEPS_
         f'#{i*STEPS_PER_CYCLE+1}: color green :{p1},{p2}; repr sphere :{p1},{p2}; repr stick :{p1+1},{p2-1}; color #ffffa2e8a2e8 :{p1+1}-{p2-1};')
 
     print("Done")
+
+#loop_extrusion(10000, 3, 1000, 10, 1)

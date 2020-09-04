@@ -52,7 +52,7 @@ def loop_extrusion(STEPS, LE_FORCE_SCALE, MATRIX_LENGTH, STEPS_PER_CYCLE, STEPS_
     simulation = Simulation(pdb.topology, system, integrator)
     simulation.context.setPositions(pdb.positions)
     simulation.minimizeEnergy()
-    simulation.reporters.append(DCDReporter('2sided-trj.dcd', 1))
+    simulation.reporters.append(DCDReporter('wyniki/2sided-trj.dcd', 1))
     simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, potentialEnergy=True, temperature=True))
     simulation.reporters.append(StateDataReporter(STATE_FNAME, 10, step=True, potentialEnergy=True))
 
@@ -73,7 +73,7 @@ def loop_extrusion(STEPS, LE_FORCE_SCALE, MATRIX_LENGTH, STEPS_PER_CYCLE, STEPS_
             simulation.step(STEPS_PER_IT)
 #    for i in range(STEPS_PER_CYCLE):
 #        simulation.step(1)
-
+        simulation.step(200)
         plot_data(STATE_FNAME, '2sided-energy.png')
 
     print('#1: repr stick; color white; color red :1,100; repr sphere :1,100; vdwdefine 0.5')

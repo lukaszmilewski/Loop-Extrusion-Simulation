@@ -8,8 +8,8 @@ MATRIX_LENGTH = 1000
 STEPS_PER_CYCLE = 10
 STEPS_PER_IT = 1
 
-dcdfile2 = r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\2sided-trj.dcd'
-dcdfile1 = r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\1sided-trj.dcd'
+dcdfile2 = r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\wyniki\2sided-trj.dcd'
+dcdfile1 = r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\wyniki\1sided-trj.dcd'
 pdbfile = r'C:\Users\lukas\PycharmProjects\Loop-Extrusion-Simulation\initial_structure.pdb'
 outputmap2 = "2sided-heatmap.png"
 outputmap1 = "1sided-heatmap.png"
