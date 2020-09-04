@@ -3,6 +3,18 @@ import csv
 import numpy as np
 from matplotlib import pyplot as plt
 
+def gen_line_array (N,F):
+    a=np.arange(1,N+1)
+    b=F*a/N
+    c=b[::-1]
+    return np.vstack((a,b,c))
+
+def gen_sin_array (N,F):
+    a=np.arange(1,N+1)
+    b=F*np.sin((a/(N/(np.pi/2))))
+    c=b[::-1]
+   
+    return np.vstack((a,b,c))
 
 def plot_data(state_fname, plot_fname):
     with open(state_fname) as csv_file:
@@ -24,4 +36,5 @@ def plot_data(state_fname, plot_fname):
         ax1.set_ylabel("Potential energy [kJ/mole]")
 
         plt.savefig(plot_fname)
-        print("Plot saved in {} file".format(plot_fname))
+        plt.close()
+        #print("Plot saved in {} file".format(plot_fname))
